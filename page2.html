@@ -7,6 +7,15 @@
     <link rel="stylesheet" href="css/base.css">
     <link rel="stylesheet" href="css/layout.css">
     <link rel="stylesheet" href="css/modules.css">
+
+    <script id="photo-template" type="text/x-handlebars-template">
+      <section>
+          <h2>{{title}}</h2>
+          <img src="{{image_url}}" alt="{{title}}"/>
+          <p>{{description}}</p>
+      </section>
+    </script>
+
   </head>
   <body>
     <nav>
@@ -19,16 +28,15 @@
      </select>
     </header>
     <main>
-      <section id="photo-template">
-        <h2></h2>
-        <img src="" alt="">
-        <p></p>
-      </section>
+     <section id="photo">
+       
+     </section>
     </main>
     <footer>
       &copy; 2018 Code Fellows
     </footer>
     <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.10/handlebars.js"></script>
     <script type="text/javascript" src="js/app2.js"></script>
   </body>
 </html>
