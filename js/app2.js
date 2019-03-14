@@ -1,43 +1,35 @@
 'use strict';
 
-function Horn(horn) {
-  this.title = horn.title;
-  this.image_url = horn.image_url;
-  this.description = horn.description;
-  this.keyword = horn.keyword;
+function Horn(rawDataObject){
+  for(let key in rawDataObject){
+    this[key] = rawDataObject[key];
+  }
 }
-
 Horn.allHorns = [];
 
-Horn.prototype.render = function(){
-  $('main').append('<div class="clone"></div>');
-  let hornClone = $('div[class="clone"]');
-
-  let hornHtml = $('#photo-template').html();
-
-  hornClone.html(hornHtml)
-
-  hornClone.find('h2').text(this.title);
-  hornClone.find('img').attr('src', this.image_url);
-  hornClone.find('p').text(this.description);
-  hornClone.removeClass('clone');
-  hornClone.attr('class', this.keyword);
+Horn.prototype.toHtml = function(){
+  let $template = $('#photo-template').html();
+  let compiledTemplate = Handlebars.compile($template);
+  return compiledTemplate(this);
 }
+
 
 Horn.readJson = () => {
   $.get('/data/page-2.json', 'json')
     .then(data => {
-      data.forEach(item => {
-        Horn.allHorns.push(new Horn(item));
+      data.forEach(object=> {
+        Horn.allHorns.push(new Horn(object));
       })
     })
-    .then(Horn.loadHorns)
     .then(Horn.fillArray)
     .then(Horn.filter)
+    .then(Horn.renderHorn);
 }
 
-Horn.loadHorns = () => {
-  Horn.allHorns.forEach(horn => horn.render())
+Horn.renderHorn = () =>{
+  Horn.allHorns.forEach(newHornObject =>{
+    $('#photo').append(newHornObject.toHtml());
+  })
 }
 
 Horn.fillArray = () =>{
@@ -57,16 +49,17 @@ Horn.filter = () => {
   $('select').on('change', function(){
     let selected = $(this).val();
     if (selected !== 'Filter By Keyword') {
-      $('div').hide();
+      $('section').hide();
 
       Horn.allHorns.forEach(image => {
         if (selected === image.keyword) {
-          $(`div [class="${selected}"]`).addClass('filtered').fadeIn();
+          $(`section [class="${selected}"]`).addClass('filtered').fadeIn();
         }
       })
-      $(`div[class= "${selected}"]`).fadeIn();
+      $(`section[class= "${selected}"]`).fadeIn();
     }
   })
 }
 
 $(() => Horn.readJson());
+
