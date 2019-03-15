@@ -9,10 +9,10 @@
     <link rel="stylesheet" href="css/modules.css">
 
     <script id="photo-template" type="text/x-handlebars-template">
-      <section>
-          <h2>{{title}}</h2>
-          <img src="{{image_url}}" alt="{{title}}"/>
-          <p>{{description}}</p>
+      <section id="section" class="{{keyword}}">
+        <h2>{{title}}</h2>
+        <img src="{{image_url}}" alt="{{title}}"/>
+        <p>{{description}}</p>
       </section>
     </script>
 
@@ -27,10 +27,8 @@
        <option value="default">Filter by Keyword</option>
      </select>
     </header>
-    <main>
-     <section id="photo">
-       
-     </section>
+    <main id="photo">
+     
     </main>
     <footer>
       &copy; 2018 Code Fellows
