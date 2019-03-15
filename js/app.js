@@ -53,10 +53,9 @@ Horn.filter = () => {
 
       Horn.allHorns.forEach(image => {
         if (selected === image.keyword) {
-          $(`section [class="${selected}"]`).addClass('filtered').fadeIn();
+          $(`section[class="${selected}"]`).fadeIn();
         }
       })
-      $(`section[class= "${selected}"]`).fadeIn();
     }
   })
 }
