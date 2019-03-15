@@ -60,5 +60,16 @@ Horn.filter = () => {
   })
 }
 
+Horn.handleSelect = () => {
+  $('form input').on('change', function(){
+    let clicked = $("form input[type='radio']:checked").val();
+    if(clicked === 'title'){
+      //call sort function
+    }else if(clicked === 'num-of-horns'){
+      //call sort function
+    }
+  })
+}
+
 $(() => Horn.readJson());
 
