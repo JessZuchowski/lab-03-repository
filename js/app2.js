@@ -22,14 +22,24 @@ Horn.readJson = () => {
       })
     })
     .then(Horn.fillArray)
+    .then(sortHorns)
     .then(Horn.filter)
-    .then(Horn.renderHorn);
+    .then(Horn.renderHorn)
 }
 
 Horn.renderHorn = () =>{
   Horn.allHorns.forEach(newHornObject =>{
     $('#photo').append(newHornObject.toHtml());
   })
+}
+
+const sortHorns = (sorted_array) =>{
+  Horn.allHorns.sort(function(a,b){
+    if(a.title > b.title) return 1;
+    if(a.title < b.title) return -1;
+    return 0;
+  })
+  return sorted_array;
 }
 
 Horn.fillArray = () =>{

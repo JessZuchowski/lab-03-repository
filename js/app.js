@@ -22,6 +22,8 @@ Horn.readJson = () => {
       })
     })
     .then(Horn.fillArray)
+    .then(sortHorns)
+    .then(Horn.sortByNumber)
     .then(Horn.filter)
     .then(Horn.renderHorn);
 }
@@ -44,6 +46,24 @@ Horn.fillArray = () =>{
     $('select').append(optionTag);
   })
 }
+
+const sorted_array = Horn.allHorns;
+const sortHorns = (sorted_array) =>{
+  Horn.allHorns.sort(function(a,b){
+    if(a.title > b.title) return 1;
+    if(a.title < b.title) return -1;
+    return 0;
+  })
+  return sorted_array;
+}
+
+Horn.sortByNumber = () => {
+  $('form input').on('change', function(){
+    $('input[name=title]').removeAttr('checked');
+    
+  })
+}
+
 
 Horn.filter = () => {
   $('select').on('change', function(){
