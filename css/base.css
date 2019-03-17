@@ -5,3 +5,25 @@ img {
 section{
   width:300px;
 }
+
+h1, h2{
+  font-family: 'Margarine', cursive;
+}
+
+li{
+  list-style: none;
+}
+
+a{
+  text-decoration: none;
+  font-family: 'Roboto Condensed', sans-serif;
+}
+
+p{
+  font-family: 'Roboto Condensed', sans-serif;
+  line-height: 1.5em;
+}
+
+label{
+  font-family: 'Roboto Condensed', sans-serif;
+}

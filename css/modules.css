@@ -1,0 +1,23 @@
+h1{
+  font-size: 4em;
+  text-shadow:3px 3px 2px grey;
+}
+
+h2{
+  font-size: 2em;
+  text-shadow:2px 2px 1px grey;
+}
+
+img{
+  border-radius:3%;
+  border: 1px solid grey;
+  box-shadow: 5px 5px 2px grey;
+}
+
+li{
+  padding:1em;
+}
+
+/* #selected{
+  width:500px;
+} */

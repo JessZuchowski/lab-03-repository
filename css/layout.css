@@ -3,3 +3,43 @@ main{
   flex-wrap: wrap;
   justify-content: center;
 }
+
+h1{
+  text-align: center;
+}
+
+select{
+  margin-left:46%;
+  margin-top: 2em;
+  margin-bottom: 4em;
+}
+
+ul{
+  display:flex;
+  justify-content:center;
+  padding:1em;
+}
+
+form{
+  display:flex;
+  justify-content: center;
+}
+
+h2{
+  margin-bottom:1em;
+}
+
+img{
+  margin-bottom:1em;
+}
+
+p{
+  margin-bottom:1em;
+}
+section{
+  padding:1em;
+}
+
+label{
+  margin-right:1em;
+}

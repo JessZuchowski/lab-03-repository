@@ -1,8 +1,8 @@
 'use strict';
 
-function Horn(rawDataObject){
-  for(let key in rawDataObject){
-    this[key] = rawDataObject[key];
+function Horn(item){
+  for(let key in item){
+    this[key] = item[key];
   }
 }
 Horn.allHorns = [];
@@ -11,7 +11,7 @@ Horn.prototype.toHtml = function(){
   let $template = $('#photo-template').html();
   let compiledTemplate = Handlebars.compile($template);
   return compiledTemplate(this);
-}
+};
 
 
 Horn.readJson = () => {
@@ -22,24 +22,16 @@ Horn.readJson = () => {
       })
     })
     .then(Horn.fillArray)
-    .then(sortHorns)
-    .then(Horn.filter)
+    .then(sortHornsByTitle)
+    .then(Horn.sort)
     .then(Horn.renderHorn)
+    .then(Horn.filter)
 }
 
 Horn.renderHorn = () =>{
-  Horn.allHorns.forEach(newHornObject =>{
-    $('#photo').append(newHornObject.toHtml());
+  Horn.allHorns.forEach(image =>{
+    $('#photo').append(image.toHtml());
   })
-}
-
-const sortHorns = (sorted_array) =>{
-  Horn.allHorns.sort(function(a,b){
-    if(a.title > b.title) return 1;
-    if(a.title < b.title) return -1;
-    return 0;
-  })
-  return sorted_array;
 }
 
 Horn.fillArray = () =>{
@@ -54,6 +46,45 @@ Horn.fillArray = () =>{
     $('select').append(optionTag);
   })
 }
+
+const title_sorted_array = Horn.allHorns;
+const sortHornsByTitle = (title_sorted_array) =>{
+  Horn.allHorns.sort(function(a,b){
+    if(a.title > b.title) return 1;
+    if(a.title < b.title) return -1;
+    return 0;
+  })
+  return title_sorted_array;
+}
+
+const num_sorted_array = Horn.allHorns;
+const sortHornsByNum = (num_sorted_array) =>{
+  Horn.allHorns.sort(function(a,b){
+    if(a.horns > b.horns)return 1;
+    if(a.horns < b.horns) return -1;
+    return 0;
+  })
+  return num_sorted_array;
+}
+
+Horn.sort = () => {
+  $('form input').on('change', function(){
+    $('section').show()
+    $('select').val('default');
+    let selected = $(this).val();
+    if(selected === 'num-of-horns'){
+      $('input[name=title]').prop('checked',false);
+      $('input[name=num-of-horns]').prop('checked',true);
+      sortHornsByNum();
+    }
+    if(selected === 'title'){
+      $('input[name=num-of-horns]').prop('checked',false);
+      $('input[name=title]').prop('checked',true);
+      sortHornsByTitle();
+    }
+  })
+}
+
 
 Horn.filter = () => {
   $('select').on('change', function(){
@@ -70,6 +101,8 @@ Horn.filter = () => {
   })
 }
 
-$(() => Horn.readJson());
 
+$(() => {
+  Horn.readJson()
+});
 

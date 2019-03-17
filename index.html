@@ -7,15 +7,14 @@
     <link rel="stylesheet" href="css/base.css">
     <link rel="stylesheet" href="css/layout.css">
     <link rel="stylesheet" href="css/modules.css">
+    <link href="https://fonts.googleapis.com/css?family=Margarine|Roboto+Condensed:300" rel="stylesheet">
 
-    <script id="photo-template" type="text/x-handlebars-template">
-      <div class="flexbox"> 
+    <script id="photo-template" type="text/x-handlebars-template"> 
       <section id="section" class="{{keyword}}">
         <h2>{{title}}</h2>
         <img src="{{image_url}}" alt="{{title}}"/>
         <p>{{description}}</p>
       </section>
-    </div>
     </script>
     
 
@@ -24,11 +23,15 @@
     <header>
       <h1>The Gallery of Horns</h1>
       <nav>
-        <a href="page2.html">page2</a>
+        <ul>
+          <li> <a href="index.html">Page One</a></li>
+          <li> <a href="page2.html">Page Two</a></li>
+        </ul>
+       
       </nav>
     <form id="sort">
-      <input type="radio" value="title" name="title" checked="true" >Sort by Title</input>
-      <input type="radio" value="num-of-horns" name="num-of-horns" >Sort by Number of Horns</input>
+        <input type="radio" value="title" name="title" checked="true" ><label>Sort by Title</label></input>
+        <input type="radio" value="num-of-horns" name="num-of-horns" ><label>Sort by Number of Horns</label></input>
     </form>
      <select id="dropdown">
        <option value="default">Filter by Keyword</option>
