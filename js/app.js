@@ -36,6 +36,8 @@ Horn.renderHorn = () =>{
   })
 }
 
+
+
 Horn.fillArray = () =>{
   const filtered_array = [];
 
@@ -72,12 +74,16 @@ const sortHornsByNum = (num_sorted_array) =>{
 Horn.sort = () => {
   $('form input').on('change', function(){
     $('select').val('default');
+    $('section').hide();
     let selected = $(this).val();
     if(selected === 'num-of-horns'){
       $('input[name=title]').prop('checked',false);
       $('input[name=num-of-horns]').prop('checked',true);
       sortHornsByNum();
-      $('section').show()
+      num_sorted_array.forEach(image =>{
+        console.log(num_sorted_array);
+        $('#photo').append(image.toHtml());
+      })
     }
     if(selected === 'title'){
       $('input[name=num-of-horns]').prop('checked',false);
@@ -105,15 +111,17 @@ Horn.filter = () => {
 }
 
 Horn.clickImage = () =>{
-  $('section').on('click',function(event){
+  $('section').on('click', function(event){
     event.stopPropagation();
     $(this).attr('id','selected');
     $('section').hide();
     $('section[id=selected]').show();
   }) 
+  $('main').on('click',function(){
+    $('section').attr('id','');
+    $('section').show();
+  })
 }
-
-
 
 $(() => {
   Horn.readJson()
